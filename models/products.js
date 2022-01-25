@@ -1,10 +1,10 @@
 const connection = require('./connection');
 
-const insertProduct = async (name, quantity) => {
+const create = async (name, quantity) => {
   const [result] = await connection
-    .execute('INSERT INTO products name = ? quantity = ?', [name, quantity]);
+    .execute('INSERT INTO products (name, quantity) VALUES (?, ?)', [name, quantity]);
 
   return result;
 };
 
-module.exports = insertProduct;
+module.exports = create;

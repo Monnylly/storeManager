@@ -3,7 +3,7 @@ const express = require('express');
 
 const app = express;
 
-const insertProduct = require('./models/products');
+const create = require('./models/products');
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
@@ -11,7 +11,7 @@ app.get('/', (_request, response) => {
 });
 
 app.get('/products', async (_req, res) => {
-  const product = await insertProduct();
+  const product = await create();
   res.status(200).json(product);
 });
 
