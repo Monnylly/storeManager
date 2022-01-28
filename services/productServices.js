@@ -1,13 +1,19 @@
-const express = require('express');
+require('dotenv').config();
 
-const router = express.Router();
+const productModel = require('../models/productsModel');
 
-const create = require('../models/products');
+const getAll = async () => {
+  const products = await productModel.getAll();
 
-router.get('/', async (_req, res) => {
-  const product = await create.getAll();
+  return products;
+};
 
+const createService = async (req, res) => {
+  const product = await productModel.createModel();
   res.status(200).json(product);
-});
+};
 
-module.exports = router;
+module.exports = { 
+  createService,
+  getAll,
+};
