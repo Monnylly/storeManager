@@ -8,12 +8,16 @@ const getAll = async () => {
   return products;
 };
 
-const createService = async (req, res) => {
-  const product = await productModel.createModel();
-  res.status(200).json(product);
+const createService = async (name, quantity) => {
+  const resp = await productModel.getByName(name);
+  if (resp !== undefined) {
+    return { re: 'exist' };
+  }
+  const product = await productModel.createModel(name, quantity);
+  return product;
 };
 
 module.exports = { 
-  createService,
   getAll,
+  createService,
 };

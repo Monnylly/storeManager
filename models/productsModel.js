@@ -8,13 +8,18 @@ const getAll = async () => {
 };
 
 const createModel = async (name, quantity) => {
-  const [{ product }] = await connection
+  const [product] = await connection
    .execute('INSERT INTO products (name, quantity) VALUES (?, ?)', [name, quantity]);
   return {
     id: product.insertId,
-    name: product.name,
-    quantity: product.quantity,
+    name,
+    quantity,
   };
 };
 
-module.exports = { createModel, getAll };
+const getByName = async (name) => {
+ const [[product]] = await connection.execute('SELECT  * FROM products WHERE name = ?', [name]);
+ return product;
+};
+
+module.exports = { createModel, getAll, getByName };

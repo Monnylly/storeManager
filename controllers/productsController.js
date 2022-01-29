@@ -1,8 +1,7 @@
 require('dotenv').config();
-const { productServices } = require('../services/productServices');
+const productServices = require('../services/productServices');
 
 const OK = 200;
-const codeOk = 201;
 
 const getAll = async (_req, res, next) => {
   try {
@@ -16,13 +15,11 @@ const getAll = async (_req, res, next) => {
 const createController = async (req, res, next) => {
   const { name, quantity } = req.body;
   try {
-    const product = await productServices.createService({ name, quantity });
-
-    if (product.status) {
-      return res.status(product.status).json({ message: product.message });
+    const product = await productServices.createService(name, quantity);
+    if (product.re === 'exist') {
+      return res.status(409).json({ message: 'Product already exists' });
     }
-
-    return res.status(codeOk).json({ id: product.id, name, quantity });
+    return res.status(201).json(product);
   } catch (err) {
     next(err);
   }
