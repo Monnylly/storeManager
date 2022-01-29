@@ -55,7 +55,7 @@ describe("Products", () => {
   }
   
   describe("1 - Crie um endpoint para o cadastro de produtos", () => {
-    it.only("Será validado que o campo name esteja presente no body da requisição", async()=>{
+    it("Será validado que o campo name esteja presente no body da requisição", async()=>{
       await frisby
         .post(`${url}/products/`, {
           // name: "Olho de Thundera",
@@ -72,7 +72,7 @@ describe("Products", () => {
           );
         });
     })
-    it.only("Será validado que o campo quantity esteja presente no body da requisição", async()=>{
+    it("Será validado que o campo quantity esteja presente no body da requisição", async()=>{
       await frisby
         .post(`${url}/products/`, {
           name: "Olho de Thundera",
@@ -89,7 +89,7 @@ describe("Products", () => {
           );
         });
     })
-    it.only("Será validado que não é possível criar um produto com o nome menor que 5 caracteres", async () => {
+    it("Será validado que não é possível criar um produto com o nome menor que 5 caracteres", async () => {
       await frisby
         .post(`${url}/products/`, {
           name: "Rai",
@@ -107,7 +107,7 @@ describe("Products", () => {
         });
     });
 
-    it.only("Será validado que não é possível criar um produto com o mesmo nome de outro já existente", async () => {
+    it("Será validado que não é possível criar um produto com o mesmo nome de outro já existente", async () => {
       await frisby
         .post(`${url}/products/`, {
           name: "Martelo de Thor",
@@ -123,7 +123,7 @@ describe("Products", () => {
         });
     });
 
-    it.only("Será validado que não é possível criar um produto com quantidade menor que zero", async () => {
+    it("Será validado que não é possível criar um produto com quantidade menor que zero", async () => {
       await frisby
         .post(`${url}/products`, {
           name: "Produto do Batista",
@@ -141,7 +141,7 @@ describe("Products", () => {
         });
     });
 
-    it.only("Será validado que não é possível criar um produto com quantidade igual a zero", async () => {
+    it("Será validado que não é possível criar um produto com quantidade igual a zero", async () => {
       await frisby
         .post(`${url}/products`, {
           name: "Produto do Batista",
@@ -159,7 +159,7 @@ describe("Products", () => {
         });
     });
 
-    it.only("Será validado que não é possível criar um produto com uma string no campo quantidade", async () => {
+    it("Será validado que não é possível criar um produto com uma string no campo quantidade", async () => {
       await frisby
         .post(`${url}/products`, {
           name: "Produto do Batista",
@@ -175,7 +175,7 @@ describe("Products", () => {
         });
     });
 
-    it.only("Será validado que é possível criar um produto com sucesso", async () => {
+    it("Será validado que é possível criar um produto com sucesso", async () => {
       await frisby
         .post(`${url}/products`, {
           name: "Arco do Gavião Arqueiro",
@@ -194,7 +194,7 @@ describe("Products", () => {
     });
   });
 
-  describe.skip("2 - Crie um endpoint para listar os produtos", () => {
+  describe.only("2 - Crie um endpoint para listar os produtos", () => {
     it("Será validado que todos produtos estão sendo retornados", async () => {
       await frisby
         .get(`${url}/products`)
@@ -221,7 +221,7 @@ describe("Products", () => {
         });
     });
 
-    it.skip("Será validado que não é possível listar um produto que não existe", async () => {
+    it("Será validado que não é possível listar um produto que não existe", async () => {
       await frisby
         .get(`${url}/products/${INVALID_ID}`)
         .expect("status", 404)
@@ -233,7 +233,7 @@ describe("Products", () => {
         });
     });
 
-    it.skip("Será validado que é possível listar um determinado produto", async () => {
+    it("Será validado que é possível listar um determinado produto", async () => {
       let result;
 
       await frisby

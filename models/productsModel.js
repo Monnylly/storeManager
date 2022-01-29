@@ -22,4 +22,9 @@ const getByName = async (name) => {
  return product;
 };
 
-module.exports = { createModel, getAll, getByName };
+const getById = async (id) => {
+  const [[productId]] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
+  return productId;
+};
+
+module.exports = { createModel, getAll, getByName, getById };

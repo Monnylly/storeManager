@@ -3,7 +3,7 @@ const productServices = require('../services/productServices');
 
 const OK = 200;
 
-const getAll = async (_req, res, next) => {
+const getAll = async (req, res, next) => {
   try {
     const productsServ = await productServices.getAll();
     return res.status(OK).json(productsServ);
@@ -25,4 +25,17 @@ const createController = async (req, res, next) => {
   }
 };
 
-module.exports = { createController, getAll };
+const getById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const productid = await productServices.getById(id);
+    if (productid) {
+      return res.status(200).json(productid);
+    }
+    return res.status(404).json({ message: 'Product not found' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createController, getAll, getById };

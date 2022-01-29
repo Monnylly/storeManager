@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const { getAll, createController } = require('./controllers/productsController');
+const { getAll, createController, getById } = require('./controllers/productsController');
 const { errorGeneric } = require('./middlewares/erroMiddlewares');
 
 const {
@@ -21,6 +21,8 @@ app.get('/', (_request, response) => {
 });
 
 app.get('/products', getAll);
+
+app.get('/products/:id', getById);
 
 app.post('/products', validationName, 
 validQuantity, validTypeQuant, createController);
