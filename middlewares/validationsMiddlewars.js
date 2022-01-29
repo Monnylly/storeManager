@@ -1,5 +1,4 @@
 require('dotenv').config();
-const productsModel = require('../models/productsModel');
 // const { validationsShemas } = require('../schemas/validationsSchemas');
 
 const errors = {
