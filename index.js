@@ -8,7 +8,8 @@ const {
   getAll, 
   createController,
   getById, 
-  updateProdut } = require('./controllers/productsController');
+  updateProdut, 
+  deleteProduct } = require('./controllers/productsController');
 const { errorGeneric } = require('./middlewares/erroMiddlewares');
 
 const {
@@ -33,6 +34,8 @@ app.post('/products', validationName,
 validQuantity, validTypeQuant, createController);
 
 app.put('/products/:id', validationName, validTypeQuant, updateProdut);
+
+app.delete('/products/:id', deleteProduct);
 
 app.use(errorGeneric);
 

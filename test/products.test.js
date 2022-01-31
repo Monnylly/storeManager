@@ -347,6 +347,7 @@ describe("Products", () => {
         });
     });
 
+
     it("Será validado que não é possível atualizar um produto com uma string no campo quantidade", async () => {
       let result;
       let resultProductId;
@@ -417,8 +418,8 @@ describe("Products", () => {
     });
   });
 
-  describe.skip("4 - Crie um endpoint para deletar um produto", () => {
-    it.skip("Será validado que é possível deletar um produto com sucesso", async () => {
+  describe.only("4 - Crie um endpoint para deletar um produto", () => {
+    it("Será validado que é possível deletar um produto com sucesso", async () => {
       let result;
       let resultProductId;
 
@@ -452,7 +453,7 @@ describe("Products", () => {
         });
     });
 
-    it.skip("Será validado que não é possível deletar um produto que não existe", async () => {
+    it("Será validado que não é possível deletar um produto que não existe", async () => {
       await frisby
         .delete(`${url}/products/${INVALID_ID}`)
         .expect("status", 404)
@@ -462,5 +463,5 @@ describe("Products", () => {
           expect(json.message).toEqual("Product not found");
         });
     });
-  });
+  })
 });

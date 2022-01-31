@@ -43,7 +43,7 @@ const updateProdut = async (req, res, next) => {
     const { id } = req.params;
     const { name, quantity } = req.body;
     const product = await productServices.updateProduct(id, name, quantity);
-    if (!product) {
+    if (product) {
       return res.status(OK).json(product);
     } 
   } catch (error) {
@@ -51,4 +51,16 @@ const updateProdut = async (req, res, next) => {
   }
 };
 
-module.exports = { createController, getAll, getById, updateProdut };
+const deleteProduct = async (req, res, next) => {
+  const { id } = req.params;
+  const product = await productServices.deleteProduct(id);
+  try {
+    if (!product) {
+      return res.status(OK).json(product);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createController, getAll, getById, updateProdut, deleteProduct };
