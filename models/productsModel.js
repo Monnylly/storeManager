@@ -30,10 +30,9 @@ const getById = async (id) => {
 };
 
 const updateProduct = async (id, name, quantity) => { 
-  const [[product]] = await connection
+  await connection
    .execute('UPDATE products SET name = ?, quantity = ? WHERE id = ?', [name, quantity, id]);
-  return product;
-  };
+};
 
 const deleteProduct = async (id) => {
   const queryDelete = await connection

@@ -42,10 +42,11 @@ const updateProdut = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, quantity } = req.body;
-    const product = await productServices.updateProduct(id, name, quantity);
-    if (product) {
-      return res.status(OK).json(product);
-    } 
+    const product = await productServices.updateProduct({ id, name, quantity });
+    if (product.status) {
+      return res.status(404).message({ message: product.error });
+    }  
+    return res.status(OK).json(product);
   } catch (error) {
     next(error);
   }
