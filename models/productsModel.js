@@ -1,4 +1,6 @@
 require('dotenv').config();
+// const { updateProdut } = require('../controllers/productsController');
+// const { updateProduct } = require('../services/productServices');
 const connection = require('./connection');
 
 const getAll = async () => {
@@ -27,4 +29,15 @@ const getById = async (id) => {
   return productId;
 };
 
-module.exports = { createModel, getAll, getByName, getById };
+const updateProduct = async (id, name, quantity) => { 
+  const [product] = await connection
+   .execute('UPDATE products SET name = ?, quantity = ? WHERE id = ?', [name, quantity, id]);
+  return product;
+  };
+
+  // const update = async (id, name, quantity) => {
+  //   const query = 'UPDATE products SET name = ?, quantity = ? WHERE id = ?;';
+  //   await connection.execute(query, [name, quantity, id]);
+  // };
+
+module.exports = { createModel, getAll, getByName, getById, updateProduct };

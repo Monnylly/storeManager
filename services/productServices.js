@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+// const { productNotFound } = require('../middlewares/validationsMiddlewars');
 const productModel = require('../models/productsModel');
 
 const getAll = async () => {
@@ -22,8 +23,21 @@ const getById = async (id) => {
   return productId;
 };
 
+const updateProduct = async (id, name, quantity) => {
+  const product = await productModel.getById(id);
+  if (!product) {
+ return {
+    status: 404,
+    message: 'Product not found',
+  }; 
+}
+  await productModel.updateProduct(id, name, quantity);
+  return { id, name, quantity };
+};
+
 module.exports = { 
   getAll,
   createService,
   getById,
+  updateProduct,
 };

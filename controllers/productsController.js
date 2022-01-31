@@ -38,4 +38,17 @@ const getById = async (req, res, next) => {
   }
 };
 
-module.exports = { createController, getAll, getById };
+const updateProdut = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, quantity } = req.body;
+    const product = await productServices.updateProduct(id, name, quantity);
+    if (!product) {
+      return res.status(OK).json(product);
+    } 
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createController, getAll, getById, updateProdut };
