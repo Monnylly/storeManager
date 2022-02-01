@@ -42,11 +42,11 @@ const validTypeQuant = (req, res, next) => {
   next();
 };
 
-const productNotFound = (req, res, next) => {
-  const { name } = req.body;
-  if (name) return res.status(404).json({ message: 'Product not found' });
-  next();
-};
+// const productNotFound = (req, res, next) => {
+//   const { name } = req.body;
+//   if (name) return res.status(404).json({ message: 'Product not found' });
+//   next();
+// };
 // const nameQuantity = (req, res) => {
 //   const { name, quantity } = req.body;
 //   const productCreate = productsModel.getAll(name, quantity);
@@ -57,6 +57,6 @@ module.exports = {
   validationName,
   validQuantity,
   validTypeQuant,
-  productNotFound,
+  // productNotFound,
   // nameQuantity,
 };

@@ -25,8 +25,8 @@ const getByName = async (name) => {
 };
 
 const getById = async (id) => {
-  const [[productId]] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
-  return productId;
+  const [[product]] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
+  return product;
 };
 
 const updateProduct = async (id, name, quantity) => { 

@@ -28,9 +28,9 @@ const createController = async (req, res, next) => {
 const getById = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const productid = await productServices.getById(id);
-    if (productid) {
-      return res.status(200).json(productid);
+    const product = await productServices.getById(id);
+    if (product) {
+      return res.status(200).json(product);
     }
     return res.status(404).json({ message: 'Product not found' });
   } catch (error) {
@@ -43,12 +43,12 @@ const updateProdut = async (req, res, next) => {
     const { id } = req.params;
     const { name, quantity } = req.body;
     const product = await productServices.updateProduct({ id, name, quantity });
-    if (product.status) {
-      return res.status(404).message({ message: product.error });
+    if (product.status === 404) {
+      return res.status(404).json({ message: product.message });
     }  
     return res.status(OK).json(product);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
