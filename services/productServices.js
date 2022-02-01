@@ -25,7 +25,6 @@ const getById = async (id) => {
 
 const updateProduct = async (id, name, quantity) => {
   const product = await productsModel.getById(id);
-  console.log(product);
   if (!product) {
  return {
     status: 404,
@@ -45,6 +44,7 @@ const deleteProduct = async (id) => {
   }; 
 }
   await productsModel.deleteProduct(id);
+  return product; 
 };
 
 module.exports = { 

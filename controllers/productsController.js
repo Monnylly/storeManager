@@ -53,12 +53,13 @@ const updateProdut = async (req, res, next) => {
 };
 
 const deleteProduct = async (req, res, next) => {
-  const { id } = req.params;
-  const product = await productServices.deleteProduct(id);
   try {
-    if (!product) {
-      return res.status(OK).json(product);
-    }
+    const { id } = req.params;
+    const product = await productServices.deleteProduct(id);
+    if ('status' in product) {
+      return res.status(product.status).json({ message: product.message });
+  }
+    return res.status(OK).json(product);
   } catch (error) {
     next(error);
   }
