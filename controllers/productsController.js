@@ -42,7 +42,7 @@ const updateProdut = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, quantity } = req.body;
-    const product = await productServices.updateProduct({ id, name, quantity });
+    const product = await productServices.updateProduct(id, name, quantity);
     if (product.status === 404) {
       return res.status(404).json({ message: product.message });
     }  
