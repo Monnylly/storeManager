@@ -12,12 +12,19 @@ const {
   deleteProduct } = require('./controllers/productsController');
 const { errorGeneric } = require('./middlewares/erroMiddlewares');
 
+const salesController = require('./controllers/salesController');
+
 const {
   validationName,
   validQuantity,
   validTypeQuant,
   // productNotFound,
 } = require('./middlewares/validationsMiddlewars');
+
+// const { 
+//   validatProductId,
+//   validationQuantity,
+// } = require('./middlewares/salesMiddlewars');
 
 app.use(bodyParser.json());
 
@@ -36,6 +43,11 @@ validQuantity, validTypeQuant, createController);
 app.put('/products/:id', validationName, validTypeQuant, updateProdut);
 
 app.delete('/products/:id', deleteProduct);
+
+app.get('/sales', salesController.getAll);
+app.post('/sales', salesController.create);
+app.get('/sales/:id', salesController.getById);
+app.put('/sales/:id', salesController.update);
 
 app.use(errorGeneric);
 

@@ -1,6 +1,4 @@
 require('dotenv').config();
-// const { updateProdut } = require('../controllers/productsController');
-// const { updateProduct } = require('../services/productServices');
 const connection = require('./connection');
 
 const getAll = async () => {
