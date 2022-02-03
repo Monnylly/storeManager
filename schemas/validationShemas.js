@@ -19,11 +19,11 @@ const validSale = (sales) => {
   }
 };
 
-const validId = (id) => {
-  if (!id) return { error: { code: 404, message: 'Sale not found' } };
+// const validId = (id) => {
+//   if (id.length === 0) return { error: { code: 404, message: 'Sale not found' } };
 
-  return true;
-};
+//   return true;
+// };
 
 const validUpdate = (body) => {
   switch (true) {
@@ -38,6 +38,6 @@ const validUpdate = (body) => {
 
 module.exports = {
   validSale,
-  validId,
+  // validId,
   validUpdate,
 };

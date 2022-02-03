@@ -3,7 +3,7 @@ require('dotenv').config();
 const salesModel = require('../models/salesModel');
 
 const { validSale,
-  validId, validUpdate } = require('../schemas/validationShemas');
+  validUpdate } = require('../schemas/validationShemas');
 
 const serialize = (sales) => sales.map((sale) => ({
   productId: sale.product_id,
@@ -26,11 +26,8 @@ const create = async (sales) => {
 
 const getById = async (id) => {
   const productExist = await salesModel.getById(id);
-
-  const isValid = validId(productExist);
-
-  if (isValid.error) return isValid;
-
+  if (productExist.length === 0) return { error: { code: 404, message: 'Sale not found' } };
+  
   return productExist;
 };
 

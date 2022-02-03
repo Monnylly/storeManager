@@ -29,7 +29,7 @@ const getById = async (id) => {
 
   const [saleData] = await connection.execute(query, [+id]);
 
-  if (!saleData) return null;
+  // if (saleData === []) return true;
 
   return saleData;
 };
