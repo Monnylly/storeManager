@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const { 
-  getAll, 
+const {
+  getAll,
   createController,
-  getById, 
-  updateProdut, 
+  getById,
+  updateProdut,
   deleteProduct } = require('./controllers/productsController');
 const { errorGeneric } = require('./middlewares/erroMiddlewares');
 
@@ -18,13 +18,7 @@ const {
   validationName,
   validQuantity,
   validTypeQuant,
-  // productNotFound,
 } = require('./middlewares/validationsMiddlewars');
-
-// const { 
-//   validatProductId,
-//   validationQuantity,
-// } = require('./middlewares/salesMiddlewars');
 
 app.use(bodyParser.json());
 
@@ -37,7 +31,7 @@ app.get('/products', getAll);
 
 app.get('/products/:id', getById);
 
-app.post('/products', validationName, 
+app.post('/products', validationName,
 validQuantity, validTypeQuant, createController);
 
 app.put('/products/:id', validationName, validTypeQuant, updateProdut);
